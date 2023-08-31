@@ -1,11 +1,9 @@
- class Article < ApplicationRecord
+class Article < ApplicationRecord
+  include Visible
 
-   include Visible
-   has_many :comments
-    validates :title, presence: true
-    validates :body, presence: true, length: { minimum: 5 }
+  has_many :comments, dependent: :destroy
 
-
- end
-
+  validates :title, presence: true
+  validates :body, presence: true, length: { minimum: 10 }
+end
 
